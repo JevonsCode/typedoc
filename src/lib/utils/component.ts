@@ -11,13 +11,13 @@ export interface ComponentHost {
     readonly application: Application;
 }
 
-export interface Component extends AbstractComponent<ComponentHost> {}
+export interface Component extends AbstractComponent<ComponentHost> { }
 
 export interface ComponentClass<
     T extends Component,
     O extends ComponentHost = ComponentHost
-> extends Function {
-    new (owner: O): T;
+    > extends Function {
+    new(owner: O): T;
 }
 
 /**
@@ -196,7 +196,7 @@ export abstract class AbstractComponent<O extends ComponentHost>
 export abstract class ChildableComponent<
     O extends ComponentHost,
     C extends Component
-> extends AbstractComponent<O> {
+    > extends AbstractComponent<O> {
     /**
      *
      */
@@ -206,6 +206,7 @@ export abstract class ChildableComponent<
 
     /**
      * Create new Component instance.
+     * 创建新的组件实例。
      */
     constructor(owner: O | typeof DUMMY_APPLICATION_OWNER) {
         super(owner);
@@ -219,8 +220,9 @@ export abstract class ChildableComponent<
 
     /**
      * Retrieve a plugin instance.
-     *
+     * 检索一个插件实例
      * @returns  The instance of the plugin or undefined if no plugin with the given class is attached.
+     * @returns 如果没有附加带有给定类的插件，则该插件的实例为 undefined。
      */
     getComponent(name: string): C | undefined {
         return (this._componentChildren || {})[name];

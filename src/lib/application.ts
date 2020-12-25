@@ -1,9 +1,11 @@
 /**
  * The TypeDoc main module and namespace.
  *
- * The [[Application]] class holds the core logic of the cli application. All code related
- * to resolving reflections is stored in [[TypeDoc.Factories]], the actual data models can be found
- * in [[TypeDoc.Models]] and the final rendering is defined in [[TypeDoc.Output]].
+ * The [[Application]] class holds the core logic of the cli application. 
+ * 这个类是应用的核心
+ * All code related to resolving reflections is stored in [[TypeDoc.Factories]],
+ * the actual data models can be found in [[TypeDoc.Models]] and the final rendering is defined in [[TypeDoc.Output]].
+ * 数据模型在 [[TypeDoc.Models]] & 定义在 [[TypeDoc.Output]].
  */
 
 import * as Path from "path";
@@ -40,21 +42,26 @@ import {
 /**
  * The default TypeDoc main application class.
  *
- * This class holds the two main components of TypeDoc, the [[Dispatcher]] and
- * the [[Renderer]]. When running TypeDoc, first the [[Dispatcher]] is invoked which
- * generates a [[ProjectReflection]] from the passed in source files. The
- * [[ProjectReflection]] is a hierarchical model representation of the TypeScript
- * project. Afterwards the model is passed to the [[Renderer]] which uses an instance
- * of [[BaseTheme]] to generate the final documentation.
- *
+ * This class holds the two main components of TypeDoc, 
+ * 这个类由两部分组成
+ * the [[Dispatcher]] and the [[Renderer]]. 
+ * When running TypeDoc, first the [[Dispatcher]] is invoked which generates a [[ProjectReflection]] from the passed in source files.
+ * 当运行时，首先调用[[Dispatcher（分配器）]]，它从传入的源文件中生成[[ProjectReflection（项目映射）]]
+ * The [[ProjectReflection]] is a hierarchical model representation of the TypeScript project.
+ * [[ProjectReflection]] 是 TypeScript 项目的层次化模型表示
+ * Afterwards the model is passed to the [[Renderer]] which uses an instance of [[BaseTheme]] to generate the final documentation.
+ * 然后把模型给 [[Renderer]] ，[[Renderer]] 使用 [[BaseTheme]] 的实例生成文档
  * Both the [[Dispatcher]] and the [[Renderer]] are subclasses of the [[EventDispatcher]]
- * and emit a series of events while processing the project. Subscribe to these Events
- * to control the application flow or alter the output.
+ * [[Dispatcher]] & [[Renderer]] 都是 [[EventDispatcher]] 的子类
+ * and emit a series of events while processing the project. 
+ * 并在处理项目时发出一连串事件
+ * Subscribe to these Events to control the application flow or alter the output.
+ * 订阅这些事件以控制应用程序流或更改输出。
  */
 @Component({ name: "application", internal: true })
 export class Application extends ChildableComponent<
-    Application,
-    AbstractComponent<Application>
+Application,
+AbstractComponent<Application>
 > {
     /**
      * The converter used to create the declaration reflections.
